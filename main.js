@@ -33,6 +33,7 @@ let game = () => {
     let computerScore = 0;
     let playerScore = 0;
 
+    //running the matches
     for (let i = 0; i < roundsToPlay; i++) {
         let announcement = playRound(getComputerChoice(),window.prompt('Make a choice!', 'Rock, Paper, or Scissors'));
         console.log(announcement);
@@ -42,7 +43,16 @@ let game = () => {
             computerScore++;
         }
      }
-     
+
+     //determining winner
+     if (computerScore > playerScore) {
+        console.log("Computer Won!");
+     } else if (computerScore < playerScore) {
+        console.log("Player won!");
+     } else {
+        console.log("Draw!");
+     }
+
 };
 
 game();
