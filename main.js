@@ -1,8 +1,13 @@
 let choices = ['Rock', 'Paper', 'Scissors'];
-let roundsToPlay = 5;
-let getComputerChoice = () => choices[Math.floor( Math.random() * choices.length)];
+let bestTo = 5;
+let computerScore = 0;
+let playerScore = 0;
+let winner = false;
 
-let playRound = (computerSelection, playerSelection) => {
+let playRound = (playerSelection) => {
+
+    let computerSelection = choices[Math.floor( Math.random() * choices.length)]
+    let annoucement = "";
     
     //standardizes playerSelection
     playerSelection = playerSelection.toLowerCase();
@@ -10,39 +15,48 @@ let playRound = (computerSelection, playerSelection) => {
 
     //shitty logic
     if (playerSelection == computerSelection) {
-        return 'Tie!';
+        annoucement = 'Tie!';
     } else if (computerSelection == 'Rock' && playerSelection == 'Paper') {
-        return 'You win! Paper covers rock!';
+        annoucement = 'You win! Paper covers rock!';
+        playerScore++;
     } else if (computerSelection == 'Rock' && playerSelection == 'Scissors') {
-        return 'You lose! Rock crushes scissors!';
+        annoucement = 'You lose! Rock crushes scissors!';
+        computerScore++;
     } else if (computerSelection == 'Paper' && playerSelection == 'Rock') {
-        return 'You lose! Paper covers rock!';
+        annoucement = 'You lose! Paper covers rock!';
+        computerScore++;
     } else if (computerSelection == 'Paper' && playerSelection == 'Scissors') {
-        return 'You win! Scissors cut paper!';
+        annoucement = 'You win! Scissors cut paper!';
+        playerScore++;
     } else if (computerSelection == 'Scissors' && playerSelection == 'Paper') {
-        return 'You lose! Scissors cut paper!';
+        annoucement = 'You lose! Scissors cut paper!';
+        computerScore++;
     } else if (computerSelection == 'Scissors' && playerSelection == 'Rock') {
-        return 'You win! Rock crushes scissors!';
-    } else {
-        return 'I fucked up the code!';
+        annoucement = 'You win! Rock crushes scissors!';
+        playerScore++;
     }
+
+    //update DOM
+    document.querySelector('#playerScore').textContent = playerScore;
+    document.querySelector('#computerScore').textContent = computerScore;
+    document.querySelector('#annoucement').textContent = annoucement;
+
+    if (winner == false) {
+        if (playerScore == 5) {
+            window.alert('Player win! Great job!');
+            winner = true;
+        } else if (computerScore == 5) {
+            window.alert('Computer win! You suck!');
+            winner = true;
+        }
+
+    }
+
 
 };
 
-let game = () => {
-    let computerScore = 0;
-    let playerScore = 0;
 
-    //running the matches
-    for (let i = 0; i < roundsToPlay; i++) {
-        let announcement = playRound(getComputerChoice(),window.prompt('Make a choice!', 'Rock, Paper, or Scissors'));
-        console.log(announcement);
-        if (announcement.includes('win')) {
-            playerScore++;
-        } else if (announcement.includes('lose')) {
-            computerScore++;
-        }
-     }
+let game = () => {
 
      //determining winner
      if (computerScore > playerScore) {
@@ -55,4 +69,9 @@ let game = () => {
 
 };
 
-game();
+const container = document.querySelector('#container')
+const buttons = container.querySelectorAll('button');
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {playRound(button.id)});
+});
