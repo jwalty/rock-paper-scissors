@@ -55,20 +55,6 @@ let playRound = (playerSelection) => {
 
 };
 
-
-let game = () => {
-
-     //determining winner
-     if (computerScore > playerScore) {
-        console.log("Computer Won!");
-     } else if (computerScore < playerScore) {
-        console.log("Player won!");
-     } else {
-        console.log("Draw!");
-     }
-
-};
-
 const container = document.querySelector('#container')
 const buttons = container.querySelectorAll('button');
 
