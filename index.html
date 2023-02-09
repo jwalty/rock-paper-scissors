@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://kit.fontawesome.com/64bc87ac4a.js" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
     <script src="main.js" defer></script>
 </head>
 <body>
-    <div id="container">
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
+    
+    <div id="scoreContainer">
+        <i class="fa-solid fa-computer"></i>
+        <span id="computerScore">0</span>
+        <span>-</span>
+        <span id="playerScore">0</span>
+        <i class="fa-regular fa-user"></i>
+    </div>
+
+    <div id="choiceContainer">
+        <i id="rock" class="fa-regular fa-hand-back-fist"></i>
+        <i id="paper" class="fa-regular fa-hand"></i>
+        <i id="scissors" class="fa-regular fa-hand-scissors"></i>
     </div>
 
     <div id="results">
         <p id="annoucement">Click a button to play!</p>
-        Computer: <span id="computerScore">0</span>
-        <br>
-        Player: <span id="playerScore">0</span>
     </div>
-
 
 </body>
 </html>
